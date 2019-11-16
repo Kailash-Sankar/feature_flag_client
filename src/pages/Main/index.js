@@ -8,7 +8,7 @@ import CustomerFeatures from "./CustomerFeatures";
 import Report from "./Report";
 import ManageFeatures from "./ManageFeatures";
 
-import { serverUrl } from "./constants";
+import { serverUrl } from "./utils";
 
 const Pages = {
   mf: ManageFeatures,

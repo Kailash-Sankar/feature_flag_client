@@ -4,6 +4,12 @@ const { Panel } = Collapse;
 
 const text = <p style={{ paddingLeft: 24 }}>Feature realted attributes</p>;
 
+const statusMap = {
+  "0": "Disabled",
+  "1": "Internal",
+  "2": "All"
+};
+
 function StatusSelector({ fid, value, onChange }) {
   return (
     <Radio.Group onChange={onChange} value={value}>
@@ -20,7 +26,7 @@ function StatusSelector({ fid, value, onChange }) {
   );
 }
 
-function FeatureBar({ feature, pos, onUpdate }) {
+function FeatureBar({ feature, pos, onUpdate, readOnly }) {
   function onChange(e) {
     const fid = e.target["data-id"];
     const value = e.target.value;
@@ -32,16 +38,20 @@ function FeatureBar({ feature, pos, onUpdate }) {
 
   return (
     <div onClick={handleClick}>
-      <StatusSelector
-        value={feature.status}
-        onChange={onChange}
-        fid={feature.id}
-      />
+      {readOnly ? (
+        <span>{statusMap[feature.status]}</span>
+      ) : (
+        <StatusSelector
+          value={feature.status}
+          onChange={onChange}
+          fid={feature.id}
+        />
+      )}
     </div>
   );
 }
 
-function FeatureTable({ features, updateFeatures }) {
+function FeatureTable({ features, updateFeatures, readOnly = false }) {
   return (
     <Collapse bordered={false} defaultActiveKey={[]}>
       {features.map((f, index) => {
@@ -49,7 +59,12 @@ function FeatureTable({ features, updateFeatures }) {
           <Panel
             header={f.name}
             extra={
-              <FeatureBar feature={f} pos={index} onUpdate={updateFeatures} />
+              <FeatureBar
+                feature={f}
+                pos={index}
+                onUpdate={updateFeatures}
+                readOnly={readOnly}
+              />
             }
             key={f.id}
           >

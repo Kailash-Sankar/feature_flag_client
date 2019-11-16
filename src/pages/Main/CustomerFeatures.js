@@ -4,7 +4,7 @@ import FeatureTable from "@components/FeatureTable";
 import { Button, Spin, notification } from "antd";
 import { Spacer } from "@components/Utils";
 
-import { serverUrl } from "./constants";
+import { serverUrl, combineFeatures } from "./utils";
 import axios from "axios";
 
 const notify = (customerName, product) => {
@@ -25,10 +25,16 @@ function CustomerFeatures({ customers, products }) {
 
   useEffect(() => {
     async function fetchData() {
-      const res = await axios.get(
+      const resCF = await axios.get(
         `${serverUrl}/customer/${customer}/${product}`
       );
-      setFeatures(res.data.data.features);
+      const resDF = await axios.get(`${serverUrl}/meta/features/${product}`);
+      const dataList = combineFeatures(
+        resCF.data.data.features,
+        resDF.data.data
+      );
+      console.log("features list", dataList);
+      setFeatures(dataList);
     }
     if (customer && product) {
       fetchData();

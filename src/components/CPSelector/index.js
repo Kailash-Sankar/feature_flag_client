@@ -4,7 +4,14 @@ import { Spacer } from "@components/Utils";
 import { Select } from "antd";
 const { Option } = Select;
 
-function CPselector({ customers, customer, setCustomer, product, setProduct }) {
+function CPselector({
+  customers,
+  products,
+  customer,
+  setCustomer,
+  product,
+  setProduct
+}) {
   //console.log("cp-init", customer, product);
 
   const [productList, setProductList] = useState([]);
@@ -51,7 +58,7 @@ function CPselector({ customers, customer, setCustomer, product, setProduct }) {
         placeholder="Select Product"
       >
         {productList.map(p => (
-          <Option key={p}>{p}</Option>
+          <Option key={p}>{products[p].name}</Option>
         ))}
       </Select>
     </div>

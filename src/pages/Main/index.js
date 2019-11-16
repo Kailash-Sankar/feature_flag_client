@@ -17,10 +17,11 @@ const Pages = {
   report: Report
 };
 
-const Page = ({ selected, customers }) => {
+const Page = ({ selected, customers, products }) => {
   const P = Pages[selected];
   const props = {
-    customers
+    customers,
+    products
   };
   return <P {...props} />;
 };
@@ -29,6 +30,7 @@ const App = () => {
   const [collapsed, setCollapsed] = React.useState(false);
   const [currentPage, setCurrentPage] = React.useState("cf");
   const [customers, setCustomers] = React.useState({});
+  const [products, setProducts] = React.useState({});
 
   function onCollapse(collapsed) {
     console.log(collapsed);
@@ -40,15 +42,25 @@ const App = () => {
     setCurrentPage(key);
   }
 
+  function createMap(data) {
+    const parsed = {};
+    data.forEach(row => {
+      parsed[row.id] = row;
+    });
+    return parsed;
+  }
+
   React.useState(async () => {
     async function fetchData() {
-      const customers = await axios.get(serverUrl + "/meta/customers");
-      console.log("customers", customers);
-      const parsed = {};
-      customers.data.data.forEach(row => {
-        parsed[row.id] = row;
-      });
-      setCustomers(parsed);
+      const customers = await axios.get(`${serverUrl}/meta/customers`);
+      const products = await axios.get(`${serverUrl}/meta/products`);
+      const parsedCustomers = createMap(customers.data.data);
+      const parsedProducts = createMap(products.data.data);
+
+      console.log("load", parsedCustomers, parsedProducts);
+
+      setCustomers(parsedCustomers);
+      setProducts(parsedProducts);
     }
     fetchData();
   }, []);
@@ -90,7 +102,11 @@ const App = () => {
         <Header style={{ background: "#fff", padding: 0 }} />
         <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
           <div style={{ padding: 24, background: "#fff", textAlign: "center" }}>
-            <Page selected={currentPage} customers={customers} />
+            <Page
+              selected={currentPage}
+              customers={customers}
+              products={products}
+            />
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>Conviva Hackathon 2019</Footer>

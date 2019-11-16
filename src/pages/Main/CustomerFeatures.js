@@ -1,24 +1,32 @@
 import React, { useState, useEffect } from "react";
 import CPSelector from "@components/CPSelector";
 import FeatureTable from "@components/FeatureTable";
-import { Button } from "antd";
+import { Button, Spin, notification } from "antd";
 import { Spacer } from "@components/Utils";
 
 import { serverUrl } from "./constants";
 import axios from "axios";
 
-function CustomerFeatures({ customers }) {
-  console.log("CF", customers);
+const notify = (customerName, product) => {
+  notification.open({
+    message: "Changes have been Saved!",
+    description: `Updated feature flags of ${customerName} for ${product}`
+  });
+};
+
+function CustomerFeatures({ customers, products }) {
+  console.log("CF", customers, products);
 
   const [customer, setCustomer] = useState(undefined);
   const [product, setProduct] = useState(undefined);
   const [features, setFeatures] = useState([]);
   const [reset, setReset] = useState(1);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       const res = await axios.get(
-        `${serverUrl}customer/${customer}/${product}`
+        `${serverUrl}/customer/${customer}/${product}`
       );
       setFeatures(res.data.data.features);
     }
@@ -28,7 +36,20 @@ function CustomerFeatures({ customers }) {
   }, [customer, product, reset]);
 
   function handleSave() {
-    console.log("features", features);
+    console.log("saving features", features);
+    setSaving(true);
+    axios
+      .post(`${serverUrl}/customer/${customer}/${product}`, {
+        features: features
+      })
+      .then(function(response) {
+        console.log(response);
+        setSaving(false);
+        notify(customers[customer].name, products[product].name);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 
   function handleReset() {
@@ -60,7 +81,7 @@ function CustomerFeatures({ customers }) {
     <div style={{ textAlign: "left" }}>
       <h2>Customer Feature Mapping</h2>
       <div>
-        <CPSelector customers={customers} {...cfProps} />
+        <CPSelector customers={customers} products={products} {...cfProps} />
       </div>
       {features.length > 0 && (
         <div style={{ margin: 30 }}>
@@ -71,6 +92,8 @@ function CustomerFeatures({ customers }) {
             </Button>
             <Spacer />
             <Button onClick={handleReset}>Reset</Button>
+            <Spacer />
+            {saving && <Spin />}
           </div>
         </div>
       )}

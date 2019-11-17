@@ -6,7 +6,10 @@ import Audit from "./Audit";
 import CustomerFeatures from "./CustomerFeatures";
 import Report from "./Report";
 import ManageFeatures from "./ManageFeatures";
-import { serverUrl } from "./utils";
+import ManagePackages from "./ManagePackages";
+import { serverUrl, TopBar, packages } from "./utils";
+
+import logo from "@images/logo.png";
 
 import * as styles from "./index.module.less";
 
@@ -14,14 +17,16 @@ const Pages = {
   mf: ManageFeatures,
   cf: CustomerFeatures,
   audit: Audit,
-  report: Report
+  report: Report,
+  pkg: ManagePackages
 };
 
 const Page = ({ selected, customers, products }) => {
   const P = Pages[selected];
   const props = {
     customers,
-    products
+    products,
+    packages
   };
   return <P {...props} />;
 };
@@ -78,15 +83,21 @@ const App = () => {
         collapsed={collapsed}
         onCollapse={onCollapse}
       >
-        <div className="logo" />
+        <div className="logo" style={{ height: 64 }}>
+          <img className="logo-img" src={logo} alt="LOGO" />
+        </div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["manage"]}>
+          <Menu.Item key="cf" onClick={handleMenuClick}>
+            <Icon type="deployment-unit" />
+            <span className="nav-text">Customer Features</span>
+          </Menu.Item>
           <Menu.Item key="mf" onClick={handleMenuClick}>
             <Icon type="flag" />
             <span className="nav-text">Manage Features</span>
           </Menu.Item>
-          <Menu.Item key="cf" onClick={handleMenuClick}>
-            <Icon type="deployment-unit" />
-            <span className="nav-text">Customer Features</span>
+          <Menu.Item key="pkg" onClick={handleMenuClick}>
+            <Icon type="container" />
+            <span className="nav-text">Manage Packages</span>
           </Menu.Item>
           <Menu.Item key="audit" onClick={handleMenuClick}>
             <Icon type="audit" />
@@ -99,7 +110,9 @@ const App = () => {
         </Menu>
       </Sider>
       <Layout style={{ marginLeft: 200 }}>
-        <Header style={{ background: "#fff", padding: 0 }} />
+        <Header style={{ background: "#fff", padding: 0 }}>
+          <TopBar />
+        </Header>
         <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
           <div className={styles.contentWrapper}>
             <Page

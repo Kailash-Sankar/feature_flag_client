@@ -31,7 +31,8 @@ module.exports = {
     extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
     alias: {
       "@components": path.resolve(__dirname, "./src/components/"),
-      "@utils": path.resolve(__dirname, "./src/utils/")
+      "@utils": path.resolve(__dirname, "./src/utils/"),
+      "@images": path.resolve(__dirname, "./src/images/")
     }
   },
   module: {
@@ -71,6 +72,14 @@ module.exports = {
                 path.resolve(__dirname, "node_modules")
               ]
             }
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader"
           }
         ]
       }

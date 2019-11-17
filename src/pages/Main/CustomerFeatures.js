@@ -1,11 +1,25 @@
 import React, { useState, useEffect } from "react";
 import CPSelector from "@components/CPSelector";
 import FeatureTable from "@components/FeatureTable";
-import { Button, Spin, notification } from "antd";
+import { Button, Spin, notification, Empty } from "antd";
 import { Spacer } from "@components/Utils";
 
 import { serverUrl, combineFeatures } from "./utils";
 import axios from "axios";
+
+function getPackageFeatures() {
+  return {
+    "0": [],
+    "1": {
+      ad_slates: {
+        id: "ad_slates",
+        status: 2
+      }
+    },
+    "2": [],
+    "3": []
+  };
+}
 
 const notify = (customerName, product) => {
   notification.open({
@@ -14,15 +28,15 @@ const notify = (customerName, product) => {
   });
 };
 
-function CustomerFeatures({ customers, products }) {
-  console.log("CF", customers, products);
-
+function CustomerFeatures({ customers, products, packages }) {
   const [customer, setCustomer] = useState(undefined);
   const [product, setProduct] = useState(undefined);
   const [features, setFeatures] = useState([]);
   const [reset, setReset] = useState(1);
   const [saving, setSaving] = useState(false);
   const [productList, setProductList] = useState({});
+
+  const [pack, setPack] = useState(undefined);
 
   useEffect(() => {
     async function fetchData() {
@@ -57,8 +71,28 @@ function CustomerFeatures({ customers, products }) {
     }
   }
 
+  function applyPackage(packageFeatures) {
+    const newFeatures = [];
+    features.forEach(f => {
+      const ff = packageFeatures[f.id];
+      if (ff) {
+        newFeatures.push({ ...f, status: ff.status });
+      } else {
+        newFeatures.push(f);
+      }
+    });
+    setFeatures(newFeatures);
+  }
+
   function onProductChange(value) {
     setProduct(value);
+  }
+
+  function onPackageChange(value) {
+    setPack(value);
+    const packageFeatures = getPackageFeatures();
+    console.log("pkg", value, packageFeatures);
+    applyPackage(packageFeatures[value]);
   }
 
   function handleSave() {
@@ -99,7 +133,10 @@ function CustomerFeatures({ customers, products }) {
     customer,
     product,
     onCustomerChange,
-    onProductChange
+    onProductChange,
+    packages,
+    pack,
+    onPackageChange
   };
   console.log("render", features);
 
@@ -109,7 +146,7 @@ function CustomerFeatures({ customers, products }) {
       <div>
         <CPSelector customers={customers} products={productList} {...cfProps} />
       </div>
-      {features.length > 0 && (
+      {features.length > 0 ? (
         <div style={{ margin: 30 }}>
           <FeatureTable features={features} updateFeatures={updateFeatures} />
           <div style={{ marginTop: 20 }}>
@@ -121,6 +158,10 @@ function CustomerFeatures({ customers, products }) {
             <Spacer />
             {saving && <Spin />}
           </div>
+        </div>
+      ) : (
+        <div style={{ marginTop: 100 }}>
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
         </div>
       )}
     </div>

@@ -52,10 +52,10 @@ function Audit({ customers, products }) {
   function onCustomerChange(value) {
     console.log("value", value);
     setCustomer(value);
+    setProduct("all");
 
     // skip for all mode
     if (value !== "all") {
-      setProduct(undefined);
       const temp = { all: { name: "All", id: "all" } };
       customers[value].products.forEach(p => {
         temp[p] = products[p];

@@ -3,8 +3,8 @@ import axios from "axios";
 
 export const serverUrl = "http://localhost:3000/api";
 
-export function Spacer() {
-  return <div style={{ width: 10, display: "inline-block" }}></div>;
+export function Spacer({ width = 10 }) {
+  return <div style={{ width: width, display: "inline-block" }}></div>;
 }
 
 export const formatDate = dateString => new Date(dateString).toLocaleString();

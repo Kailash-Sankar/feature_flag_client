@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 //import * as styles from "./styles.module.less";
 import { Spacer } from "@components/Utils";
 import { Select } from "antd";
@@ -8,25 +8,14 @@ function CPselector({
   customers,
   products,
   customer,
-  setCustomer,
   product,
-  setProduct
+  onCustomerChange,
+  onProductChange,
+  //feature realted attributes
+  features,
+  feature,
+  onFeatureChange
 }) {
-  //console.log("cp-init", customer, product);
-
-  const [productList, setProductList] = useState([]);
-
-  function onCustomerChange(value) {
-    console.log("value", value);
-    setCustomer(value);
-    setProductList(customers[value].products);
-  }
-
-  function onProductChange(value) {
-    console.log("value", value);
-    setProduct(value);
-  }
-
   /*
   function handleSearch(value) {
     if (value) { 
@@ -57,11 +46,36 @@ function CPselector({
         onChange={onProductChange}
         placeholder="Select Product"
       >
-        {productList.map(p => (
-          <Option key={p}>{products[p].name}</Option>
+        {Object.keys(products).map(k => (
+          <Option key={products[k].id}>{products[k].name}</Option>
         ))}
       </Select>
+      <Spacer />
+      {onFeatureChange && (
+        <FeatureSelector
+          features={features}
+          feature={feature}
+          onFeatureChange={onFeatureChange}
+        />
+      )}
     </div>
+  );
+}
+
+export function FeatureSelector({ features, feature, onFeatureChange }) {
+  return (
+    <Select
+      //showSearch
+      defaultValue={""}
+      style={{ width: 200 }}
+      value={feature}
+      onChange={onFeatureChange}
+      placeholder="Select Feature"
+    >
+      {features.map(f => (
+        <Option key={f.id}>{f.name}</Option>
+      ))}
+    </Select>
   );
 }
 

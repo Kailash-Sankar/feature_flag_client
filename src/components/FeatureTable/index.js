@@ -1,6 +1,7 @@
 import React from "react";
 import { Collapse, Radio } from "antd";
 const { Panel } = Collapse;
+import * as styles from "./index.module.less";
 
 const text = <p style={{ paddingLeft: 24 }}>Feature realted attributes</p>;
 
@@ -57,7 +58,7 @@ function FeatureTable({ features, updateFeatures, readOnly = false }) {
       {features.map((f, index) => {
         return (
           <Panel
-            header={f.name}
+            header={<RenderHeader data={f} />}
             extra={
               <FeatureBar
                 feature={f}
@@ -73,6 +74,15 @@ function FeatureTable({ features, updateFeatures, readOnly = false }) {
         );
       })}
     </Collapse>
+  );
+}
+
+function RenderHeader({ data }) {
+  return (
+    <div style={{ display: "inline-block" }}>
+      <div>{data.name}</div>
+      <div className={styles.sub}>{data.description}</div>
+    </div>
   );
 }
 

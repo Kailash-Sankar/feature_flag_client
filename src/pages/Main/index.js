@@ -2,13 +2,13 @@ import React from "react";
 import { Layout, Menu, Icon } from "antd";
 const { Header, Content, Footer, Sider } = Layout;
 import axios from "axios";
-
 import Audit from "./Audit";
 import CustomerFeatures from "./CustomerFeatures";
 import Report from "./Report";
 import ManageFeatures from "./ManageFeatures";
-
 import { serverUrl } from "./utils";
+
+import * as styles from "./index.module.less";
 
 const Pages = {
   mf: ManageFeatures,
@@ -101,7 +101,7 @@ const App = () => {
       <Layout style={{ marginLeft: 200 }}>
         <Header style={{ background: "#fff", padding: 0 }} />
         <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
-          <div style={{ padding: 24, background: "#fff", textAlign: "center" }}>
+          <div className={styles.contentWrapper}>
             <Page
               selected={currentPage}
               customers={customers}

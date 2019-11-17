@@ -22,6 +22,7 @@ function CustomerFeatures({ customers, products }) {
   const [features, setFeatures] = useState([]);
   const [reset, setReset] = useState(1);
   const [saving, setSaving] = useState(false);
+  const [productList, setProductList] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -30,8 +31,8 @@ function CustomerFeatures({ customers, products }) {
       );
       const resDF = await axios.get(`${serverUrl}/meta/features/${product}`);
       const dataList = combineFeatures(
-        resCF.data.data.features,
-        resDF.data.data
+        resCF.data.data.features || [],
+        resDF.data.data || []
       );
       console.log("features list", dataList);
       setFeatures(dataList);
@@ -40,6 +41,25 @@ function CustomerFeatures({ customers, products }) {
       fetchData();
     }
   }, [customer, product, reset]);
+
+  function onCustomerChange(value) {
+    console.log("value", value);
+    setCustomer(value);
+
+    // skip for all mode
+    if (value !== "all") {
+      setProduct(undefined);
+      const temp = {};
+      customers[value].products.forEach(p => {
+        temp[p] = products[p];
+      });
+      setProductList(temp);
+    }
+  }
+
+  function onProductChange(value) {
+    setProduct(value);
+  }
 
   function handleSave() {
     console.log("saving features", features);
@@ -77,9 +97,9 @@ function CustomerFeatures({ customers, products }) {
 
   const cfProps = {
     customer,
-    setCustomer,
     product,
-    setProduct
+    onCustomerChange,
+    onProductChange
   };
   console.log("render", features);
 
@@ -87,7 +107,7 @@ function CustomerFeatures({ customers, products }) {
     <div style={{ textAlign: "left" }}>
       <h2>Customer Feature Mapping</h2>
       <div>
-        <CPSelector customers={customers} products={products} {...cfProps} />
+        <CPSelector customers={customers} products={productList} {...cfProps} />
       </div>
       {features.length > 0 && (
         <div style={{ margin: 30 }}>

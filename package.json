@@ -33,6 +33,7 @@
     "moment-timezone": "^0.5.27",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
+    "react-diff-viewer": "^2.0.5",
     "react-dom": "^16.11.0",
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.5",

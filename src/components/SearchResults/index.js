@@ -1,6 +1,7 @@
 import React from "react";
 import { Collapse, List } from "antd";
 const { Panel } = Collapse;
+import { formatDate } from "@components/Utils";
 
 const statusMap = {
   "0": "Disabled",
@@ -22,6 +23,12 @@ export function RenderList({ data }) {
   );
 }
 
+const genExtra = date => (
+  <span style={{ fontSize: 12, color: "#757575" }}>
+    {`Last Update:${formatDate(date)}`}
+  </span>
+);
+
 function SearchResults({ result }) {
   console.log("SR", result);
   return (
@@ -29,7 +36,7 @@ function SearchResults({ result }) {
       <Collapse bordered={false} defaultActiveKey={[]}>
         {result.map(r => {
           return (
-            <Panel header={r.name} extra={""} key={r.id}>
+            <Panel header={r.name} extra={genExtra(r.updatedAt)} key={r.id}>
               <RenderList data={r.features} />
             </Panel>
           );

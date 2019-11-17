@@ -13,6 +13,10 @@ function Report({ customers, products }) {
   const [feature, setFeature] = useState(undefined);
   const [result, setResult] = useState([]);
 
+  // add option to select all
+  customers["all"] = { name: "All", id: "all" };
+  products["all"] = { name: "All", id: "all" };
+
   useEffect(() => {
     async function fetchData() {
       const params = {
@@ -52,7 +56,7 @@ function Report({ customers, products }) {
     // skip for all mode
     if (value !== "all") {
       setProduct(undefined);
-      const temp = {};
+      const temp = { all: { name: "All", id: "all" } };
       customers[value].products.forEach(p => {
         temp[p] = products[p];
       });
@@ -84,9 +88,6 @@ function Report({ customers, products }) {
     onFeatureChange
   };
   console.log("render", features);
-
-  // choose all
-  customers["all"] = { name: "All", id: "all" };
 
   return (
     <div style={{ textAlign: "left" }}>

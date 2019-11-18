@@ -86,7 +86,7 @@ const App = () => {
         <div className="logo" style={{ height: 64 }}>
           <img className="logo-img" src={logo} alt="LOGO" />
         </div>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["manage"]}>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={["cf"]}>
           <Menu.Item key="cf" onClick={handleMenuClick}>
             <Icon type="deployment-unit" />
             <span className="nav-text">Customer Features</span>
@@ -122,7 +122,9 @@ const App = () => {
             />
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>Conviva Hackathon 2019</Footer>
+        <Footer style={{ textAlign: "center" }}>
+          Conviva Hackathon 2019 | Team Forty Two
+        </Footer>
       </Layout>
     </Layout>
   );

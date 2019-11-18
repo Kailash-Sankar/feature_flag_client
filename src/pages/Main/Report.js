@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CPSelector from "@components/CPSelector";
 import SearchResults from "@components/SearchResults";
-import { Button } from "antd";
+import { Button, Empty } from "antd";
 import { serverUrl } from "./utils";
 import axios from "axios";
 
@@ -95,7 +95,7 @@ function Report({ customers, products }) {
       <div>
         <CPSelector customers={customers} products={productList} {...cfProps} />
       </div>
-      {result && result.length > 0 && (
+      {result && result.length > 0 ? (
         <div style={{ margin: 30 }}>
           <SearchResults result={result} />
           <div style={{ marginTop: 20 }}>
@@ -103,6 +103,10 @@ function Report({ customers, products }) {
               Download
             </Button>
           </div>
+        </div>
+      ) : (
+        <div style={{ marginTop: 100 }}>
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
         </div>
       )}
     </div>

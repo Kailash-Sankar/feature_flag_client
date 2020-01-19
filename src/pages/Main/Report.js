@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import CPSelector from "@components/CPSelector";
 import SearchResults from "@components/SearchResults";
 import { Button, Empty } from "antd";
 import { serverUrl } from "./utils";
 import axios from "axios";
+import { connecter } from "@store/report";
 
-function Report({ customers, products }) {
-  const [customer, setCustomer] = useState(undefined);
-  const [product, setProduct] = useState(undefined);
-  const [features, setFeatures] = useState([]);
-  const [productList, setProductList] = useState(products);
-  const [feature, setFeature] = useState(undefined);
-  const [result, setResult] = useState([]);
+function Report({ 
+  customers, 
+  products, 
+  customer, setCustomer,
+  product, setProduct,
+  features, setFeatures,
+  productList, setProductList,
+  feature, setFeature,
+  result, setResult,
+
+}) {
 
   // add option to select all
   customers["all"] = { name: "All", id: "all" };
@@ -50,7 +55,7 @@ function Report({ customers, products }) {
   }, [product]);
 
   function onCustomerChange(value) {
-    console.log("value", value);
+
     setCustomer(value);
     setProduct("all");
 
@@ -113,4 +118,4 @@ function Report({ customers, products }) {
   );
 }
 
-export default Report;
+export default connecter(Report);

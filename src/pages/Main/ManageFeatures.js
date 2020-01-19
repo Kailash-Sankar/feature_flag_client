@@ -1,20 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import CPSelector from "@components/CPSelector";
 import FeatureForm from "@components/FeatureForm";
-
 import { notification, Radio } from "antd";
-//import { Spacer } from "@components/Utils";
 import { serverUrl } from "./utils";
 import axios from "axios";
-
-// const featureTemplate = {
-//   id: undefined,
-//   name: undefined,
-//   product: undefined,
-//   status: 0,
-//   description: undefined,
-//   attributes: []
-// };
+import { connecter } from "@store/manageFeatures";
 
 const notify = (status, name, extra = "") => {
   let msg = "Changes have been Saved!";
@@ -31,11 +21,15 @@ const notify = (status, name, extra = "") => {
   });
 };
 
-function ManageFeatures({ products, packages }) {
-  const [product, setProduct] = useState(undefined);
-  const [feature, setFeature] = useState(undefined);
-  const [features, setFeatures] = useState([]);
-  const [mode, setMode] = useState(true);
+function ManageFeatures({ 
+  products, 
+  packages,
+  product, setProduct,
+  feature, setFeature,
+  features, setFeatures,
+  mode, setMode,
+  reset, setRest
+}) {
 
   useEffect(() => {
     async function fetchData() {
@@ -71,6 +65,7 @@ function ManageFeatures({ products, packages }) {
         console.log("res", res);
         if (res.data.status === 1) {
           notify(true, formData.name);
+          setRest(reset + 1);
         } else {
           notify(false, res.data.message, res.data.data[0].msg);
         }
@@ -110,6 +105,7 @@ function ManageFeatures({ products, packages }) {
           products={products}
           packages={packages}
           onSubmit={handleSubmit}
+          reset={reset}
         />
       </div>
     </div>
@@ -131,4 +127,4 @@ function ModeToggle({ mode, onModeChange }) {
   );
 }
 
-export default ManageFeatures;
+export default connecter(ManageFeatures);

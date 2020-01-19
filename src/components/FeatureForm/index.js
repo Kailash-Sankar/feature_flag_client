@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Form, Input, Radio, Button } from "antd";
 
 const formItemLayout = {
@@ -27,8 +27,19 @@ const tailFormItemLayout = {
 
 const FeatureForm = Form.create({ name: "feature_form" })(BaseFeatureForm);
 
-function BaseFeatureForm({ feature, products, packages, onSubmit, form }) {
-  const { getFieldDecorator } = form;
+function BaseFeatureForm({
+  feature,
+  products,
+  packages,
+  onSubmit,
+  form,
+  reset
+}) {
+  const { getFieldDecorator, resetFields } = form;
+
+  useEffect(() => {
+    resetFields();
+  }, [reset]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -46,7 +57,8 @@ function BaseFeatureForm({ feature, products, packages, onSubmit, form }) {
       <Form {...formItemLayout} onSubmit={handleSubmit} hideRequiredMark={true}>
         <Form.Item label="ID">
           {getFieldDecorator("id", {
-            rules: [{ required: true, message: "A unique id is required" }]
+            rules: [{ required: true, message: "A unique id is required" }],
+            //initialValue: featureObj.id,
           })(<Input placeholder="Enter unique feature flag id" />)}
         </Form.Item>
         <Form.Item label="Name">

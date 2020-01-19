@@ -10,8 +10,9 @@ import ManagePackages from "./ManagePackages";
 import { serverUrl, TopBar, packages } from "./utils";
 
 import logo from "@images/logo.png";
-
 import * as styles from "./index.module.less";
+import { Provider } from 'react-redux';
+import store from "@store/root";
 
 const Pages = {
   mf: ManageFeatures,
@@ -87,13 +88,13 @@ const App = () => {
           <img className="logo-img" src={logo} alt="LOGO" />
         </div>
         <Menu theme="dark" mode="inline" defaultSelectedKeys={["cf"]}>
-          <Menu.Item key="cf" onClick={handleMenuClick}>
-            <Icon type="deployment-unit" />
-            <span className="nav-text">Customer Features</span>
-          </Menu.Item>
           <Menu.Item key="mf" onClick={handleMenuClick}>
             <Icon type="flag" />
             <span className="nav-text">Manage Features</span>
+          </Menu.Item>
+          <Menu.Item key="cf" onClick={handleMenuClick}>
+            <Icon type="deployment-unit" />
+            <span className="nav-text">Customer Features</span>
           </Menu.Item>
           <Menu.Item key="pkg" onClick={handleMenuClick}>
             <Icon type="container" />
@@ -115,15 +116,17 @@ const App = () => {
         </Header>
         <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
           <div className={styles.contentWrapper}>
+            <Provider store={store}>
             <Page
               selected={currentPage}
               customers={customers}
               products={products}
             />
+            </Provider>
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
-          Conviva Hackathon 2019 | Team Forty Two
+          Conviva Hackathon 2019
         </Footer>
       </Layout>
     </Layout>

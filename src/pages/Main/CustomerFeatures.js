@@ -6,6 +6,7 @@ import { Spacer } from "@components/Utils";
 
 import { serverUrl, combineFeatures } from "./utils";
 import axios from "axios";
+import { connecter } from "@store/customerFeatures";
 
 function getPackageFeatures() {
   return {
@@ -28,13 +29,15 @@ const notify = (customerName, product) => {
   });
 };
 
-function CustomerFeatures({ customers, products, packages }) {
-  const [customer, setCustomer] = useState(undefined);
-  const [product, setProduct] = useState(undefined);
-  const [features, setFeatures] = useState([]);
-  const [reset, setReset] = useState(1);
-  const [saving, setSaving] = useState(false);
-  const [productList, setProductList] = useState({});
+function CustomerFeatures({ 
+  customers, products, packages,
+  customer, setCustomer,
+  product, setProduct,
+  features, setFeatures,
+  productList, setProductList,
+  reset, setReset,
+  saving, setSaving,
+}) {
 
   const [pack, setPack] = useState(undefined);
 
@@ -168,4 +171,4 @@ function CustomerFeatures({ customers, products, packages }) {
   );
 }
 
-export default CustomerFeatures;
+export default connecter(CustomerFeatures);

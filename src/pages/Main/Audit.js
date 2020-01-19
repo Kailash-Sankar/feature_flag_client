@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import CPSelector from "@components/CPSelector";
 import AuditResults from "@components/AuditResults";
 import { Button, Empty } from "antd";
 import { serverUrl } from "./utils";
 import axios from "axios";
+import { connecter } from "@store/audit";
 
-function Audit({ customers, products }) {
-  const [customer, setCustomer] = useState("all");
-  const [product, setProduct] = useState("all");
-  const [features, setFeatures] = useState([]);
-  const [productList, setProductList] = useState(products);
-  const [feature, setFeature] = useState("all");
-  const [result, setResult] = useState([]);
+function Audit({ 
+  customers, 
+  products, 
+  customer, setCustomer,
+  product, setProduct,
+  features, setFeatures,
+  productList, setProductList,
+  feature, setFeature,
+  result, setResult,
+  }) {
 
   // add option to select all
   customers["all"] = { name: "All", id: "all" };
@@ -50,7 +54,7 @@ function Audit({ customers, products }) {
   }, [product]);
 
   function onCustomerChange(value) {
-    console.log("value", value);
+  
     setCustomer(value);
     setProduct("all");
 
@@ -89,9 +93,6 @@ function Audit({ customers, products }) {
   };
   console.log("render", features);
 
-  // choose all
-  customers["all"] = { name: "All", id: "all" };
-
   return (
     <div style={{ textAlign: "left" }}>
       <h2>Audit Records</h2>
@@ -116,4 +117,4 @@ function Audit({ customers, products }) {
   );
 }
 
-export default Audit;
+export default connecter(Audit);

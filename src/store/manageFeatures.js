@@ -1,5 +1,8 @@
 import update from 'immutability-helper';
 import { connect } from 'react-redux';
+import { applyScope } from './utils';
+
+const scope = 'manageFeatures';
 
 const initialState = {
     product: undefined,
@@ -9,13 +12,13 @@ const initialState = {
     reset: 1,
 };
 
-const types = {
-    SET_PRODUCT: 'SET_PRODUCT',
-    SET_FEATURE: 'SET_FEATURE',
-    SET_FEATURES: 'SET_FEATURES',
-    SET_MODE: 'SET_MODE',
-    SET_RESET: 'SET_RESET',
-}
+const types = applyScope(scope, [
+    'SET_PRODUCT',
+    'SET_FEATURE',
+    'SET_FEATURES',
+    'SET_MODE',
+    'SET_RESET',
+]);
 
 const manageFeaturesReducer = (state=initialState, action) => {
     switch(action.type) {

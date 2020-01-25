@@ -1,5 +1,8 @@
 import update from 'immutability-helper';
 import { connect } from 'react-redux';
+import { applyScope } from './utils';
+
+const scope = 'AUDIT';
 
 const initialState = {
     customer: 'all',
@@ -10,14 +13,14 @@ const initialState = {
     result: [],
 };
 
-const types = {
-    SET_CUSTOMER: 'SET_CUSTOMER',
-    SET_PRODUCT: 'SET_PRODUCT',
-    SET_FEATURE: 'SET_FEATURE',
-    SET_FEATURES: 'SET_FEATURES',
-    SET_PRODUCT_LIST: 'SET_PRODUCT_LIST',
-    SET_RESULT: 'SET_RESULT',
-}
+const types = applyScope(scope, [
+    'SET_CUSTOMER',
+    'SET_PRODUCT',
+    'SET_FEATURE',
+    'SET_FEATURES',
+    'SET_PRODUCT_LIST',
+    'SET_RESULT',
+]);
 
 const auditReducer = (state=initialState, action) => {
     switch(action.type) {

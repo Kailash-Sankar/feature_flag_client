@@ -30,7 +30,6 @@ const genExtra = date => (
 );
 
 function SearchResults({ result }) {
-  console.log("SR", result);
   return (
     <div>
       <Collapse bordered={false} defaultActiveKey={[]}>

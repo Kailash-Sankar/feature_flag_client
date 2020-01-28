@@ -47,22 +47,17 @@ function ManageFeatures({
   }
 
   function onFeatureChange(value) {
-    console.log("ff change", value);
     setFeature(value);
   }
 
   function onModeChange(e) {
-    console.log("mode", e.target.value);
     setMode(e.target.value);
   }
 
   function handleSubmit(formData) {
-    console.log("ff change", formData);
-
     async function saveData() {
       try {
         const res = await axios.post(`${serverUrl}/ff`, formData);
-        console.log("res", res);
         if (res.data.status === 1) {
           notify(true, formData.name);
           setRest(reset + 1);
@@ -85,7 +80,6 @@ function ManageFeatures({
     feature,
     onFeatureChange
   };
-  console.log("render", features);
 
   return (
     <div style={{ textAlign: "left" }}>

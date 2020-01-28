@@ -51,7 +51,6 @@ function CustomerFeatures({
         resCF.data.data.features || [],
         resDF.data.data || []
       );
-      console.log("features list", dataList);
       setFeatures(dataList);
     }
     if (customer && product) {
@@ -60,7 +59,6 @@ function CustomerFeatures({
   }, [customer, product, reset]);
 
   function onCustomerChange(value) {
-    console.log("value", value);
     setCustomer(value);
 
     // skip for all mode
@@ -94,19 +92,17 @@ function CustomerFeatures({
   function onPackageChange(value) {
     setPack(value);
     const packageFeatures = getPackageFeatures();
-    console.log("pkg", value, packageFeatures);
     applyPackage(packageFeatures[value]);
   }
 
   function handleSave() {
-    console.log("saving features", features);
     setSaving(true);
     axios
       .post(`${serverUrl}/customer/${customer}/${product}`, {
         features: features
       })
       .then(function(response) {
-        console.log(response);
+        console.log('response', response);
         setSaving(false);
         notify(customers[customer].name, products[product].name);
       })
@@ -122,7 +118,6 @@ function CustomerFeatures({
   function updateFeatures(fid, index, value) {
     const f = features[index];
     f.status = value;
-    console.log("double check", f.id, fid);
 
     const newFeatures = [
       ...features.slice(0, index),
@@ -141,7 +136,6 @@ function CustomerFeatures({
     pack,
     onPackageChange
   };
-  console.log("render", features);
 
   return (
     <div style={{ textAlign: "left" }}>

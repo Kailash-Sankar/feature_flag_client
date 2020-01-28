@@ -25,14 +25,6 @@ function CPselector({
   pack,
   onPackageChange
 }) {
-  /*
-  function handleSearch(value) {
-    if (value) { 
-    } else {
-      this.setState({ data: [] });
-    }
-  };
-  */
 
   return (
     <div>

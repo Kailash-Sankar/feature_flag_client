@@ -1,52 +1,30 @@
 import React from "react";
-import { Layout, Menu, Icon } from "antd";
-const { Header, Content, Footer, Sider } = Layout;
+import { Layout } from "antd";
 import axios from "axios";
 import Audit from "./Audit";
 import CustomerFeatures from "./CustomerFeatures";
 import Report from "./Report";
 import ManageFeatures from "./ManageFeatures";
 import ManagePackages from "./ManagePackages";
-import { serverUrl, TopBar, packages } from "./utils";
+import { serverUrl, packages } from "./utils";
 
-import logo from "@images/logo.png";
+import {TopBar, SideBar} from "@components/Navigation";
+
+
 import * as styles from "./index.module.less";
 import { Provider } from 'react-redux';
 import store from "@store/root";
 
-const Pages = {
-  mf: ManageFeatures,
-  cf: CustomerFeatures,
-  audit: Audit,
-  report: Report,
-  pkg: ManagePackages
-};
+import {
+  HashRouter as Router,
+  Route,
+} from "react-router-dom";
 
-const Page = ({ selected, customers, products }) => {
-  const P = Pages[selected];
-  const props = {
-    customers,
-    products,
-    packages
-  };
-  return <P {...props} />;
-};
+const { Content, Footer } = Layout;
 
-const App = () => {
-  const [collapsed, setCollapsed] = React.useState(false);
-  const [currentPage, setCurrentPage] = React.useState("cf");
+function App() {
   const [customers, setCustomers] = React.useState({});
   const [products, setProducts] = React.useState({});
-
-  function onCollapse(collapsed) {
-    console.log(collapsed);
-    setCollapsed(collapsed);
-  }
-
-  function handleMenuClick({ key }) {
-    console.log("menuclick", key);
-    setCurrentPage(key);
-  }
 
   function createMap(data) {
     const parsed = {};
@@ -71,57 +49,40 @@ const App = () => {
     fetchData();
   }, []);
 
+  const pageProps = {
+    customers,
+    products,
+    packages
+  };
+
   return (
+  <Router>
     <Layout>
-      <Sider
-        style={{
-          overflow: "auto",
-          height: "100vh",
-          position: "fixed",
-          left: 0
-        }}
-        collapsible
-        collapsed={collapsed}
-        onCollapse={onCollapse}
-      >
-        <div className="logo" style={{ height: 64 }}>
-          <img className="logo-img" src={logo} alt="LOGO" />
-        </div>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["cf"]}>
-          <Menu.Item key="mf" onClick={handleMenuClick}>
-            <Icon type="flag" />
-            <span className="nav-text">Manage Features</span>
-          </Menu.Item>
-          <Menu.Item key="cf" onClick={handleMenuClick}>
-            <Icon type="deployment-unit" />
-            <span className="nav-text">Customer Features</span>
-          </Menu.Item>
-          <Menu.Item key="pkg" onClick={handleMenuClick}>
-            <Icon type="container" />
-            <span className="nav-text">Manage Packages</span>
-          </Menu.Item>
-          <Menu.Item key="audit" onClick={handleMenuClick}>
-            <Icon type="audit" />
-            <span className="nav-text">Audit</span>
-          </Menu.Item>
-          <Menu.Item key="report" onClick={handleMenuClick}>
-            <Icon type="file-search" />
-            <span className="nav-text">Reports</span>
-          </Menu.Item>
-        </Menu>
-      </Sider>
+      <SideBar />
+
       <Layout style={{ marginLeft: 200 }}>
-        <Header style={{ background: "#fff", padding: 0 }}>
-          <TopBar />
-        </Header>
+        <TopBar />
         <Content style={{ margin: "24px 16px 0", overflow: "initial" }}>
           <div className={styles.contentWrapper}>
             <Provider store={store}>
-            <Page
-              selected={currentPage}
-              customers={customers}
-              products={products}
-            />
+                <Route exact path="/">
+                  <CustomerFeatures {...pageProps} />
+                </Route>
+                <Route path="/mf">
+                  <ManageFeatures {...pageProps}/>
+                </Route>
+                <Route path="/cf">
+                  <CustomerFeatures {...pageProps} />
+                </Route>
+                <Route path="/audit">
+                  <Audit {...pageProps} />
+                </Route>
+                <Route path="/report">
+                  <Report {...pageProps} />
+                </Route>
+                <Route path="/pkg">
+                  <ManagePackages {...pageProps} />
+                </Route>
             </Provider>
           </div>
         </Content>
@@ -130,7 +91,8 @@ const App = () => {
         </Footer>
       </Layout>
     </Layout>
+  </Router>
   );
-};
+}
 
 export default App;

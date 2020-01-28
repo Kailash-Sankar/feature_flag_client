@@ -28,7 +28,7 @@ const tailFormItemLayout = {
 const FeatureForm = Form.create({ name: "feature_form" })(BaseFeatureForm);
 
 function BaseFeatureForm({
-  feature,
+  // feature,
   products,
   packages,
   onSubmit,
@@ -45,13 +45,11 @@ function BaseFeatureForm({
     e.preventDefault();
     form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
         onSubmit(values);
       }
     });
   }
 
-  console.log("FF", feature);
   return (
     <div>
       <Form {...formItemLayout} onSubmit={handleSubmit} hideRequiredMark={true}>

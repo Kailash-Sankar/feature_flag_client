@@ -31,7 +31,6 @@ function Report({
       };
       // customer  + product
       const res = await axios.post(`${serverUrl}/search/`, params);
-      console.log("response", res);
       setResult(res.data.data || []);
     }
     if (customer || product || feature) {
@@ -92,7 +91,6 @@ function Report({
     feature,
     onFeatureChange
   };
-  console.log("render", features);
 
   return (
     <div style={{ textAlign: "left" }}>

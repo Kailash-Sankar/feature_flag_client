@@ -42,7 +42,6 @@ const genExtra = date => (
 );
 
 function AuditResults({ result }) {
-  console.log("AR", result);
   return (
     <div>
       <Collapse bordered={false} defaultActiveKey={[]}>

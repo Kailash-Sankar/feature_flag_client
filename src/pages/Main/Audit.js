@@ -30,7 +30,6 @@ function Audit({
       };
       // customer  + product
       const res = await axios.post(`${serverUrl}/audit/`, params);
-      console.log("response", res);
       setResult(res.data.data || []);
     }
     if (customer || product || feature) {
@@ -91,7 +90,6 @@ function Audit({
     feature,
     onFeatureChange
   };
-  console.log("render", features);
 
   return (
     <div style={{ textAlign: "left" }}>

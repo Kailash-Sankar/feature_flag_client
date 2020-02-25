@@ -6,6 +6,6 @@
 - npm install
 - npm start
 
-The clinet app server will auto lauch the localhost url in browser. Make sure the ff-server repo is also running.
+The clinet app server will auto lauch the localhost url in browser. Make sure the feature-flag-server repo is also running.
 
-Additonal documentation is available here: https://beacon.corp.conviva.com/display/~ksankar/Hackathon+2019+-+FortyTwo
+This was done as part of Conviva Hackathon 2019 and was selected as the regional winner.

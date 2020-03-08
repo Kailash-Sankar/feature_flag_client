@@ -12,12 +12,13 @@ const initialState = {
     reset: 1,
 };
 
-const types = applyScope(scope, [
+export const types = applyScope(scope, [
     'SET_PRODUCT',
     'SET_FEATURE',
     'SET_FEATURES',
     'SET_MODE',
     'SET_RESET',
+    'SAVE',
 ]);
 
 const manageFeaturesReducer = (state=initialState, action) => {
@@ -40,7 +41,7 @@ const manageFeaturesReducer = (state=initialState, action) => {
             });
         case types.SET_RESET:
             return update(state,{
-                reset: { $set: action.reset }
+                reset: { $set: state.reset + 1 }
             });    
     }
     return state;
@@ -65,10 +66,13 @@ const mapDispatchToProps = (dispatch) => ({
         type: types.SET_MODE,
         mode,
     }),
-    setReset: (reset) => dispatch({
-        type: types.SET_RESET,
-        reset,
-    }),  
+    setReset: () => dispatch({
+        type: types.SET_RESET
+    }),
+    save: (formData) => dispatch({
+        type: types.SAVE,
+        formData,
+    })  
 });
 
 // state from root state

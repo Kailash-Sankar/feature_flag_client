@@ -8,6 +8,7 @@ import { serverUrl, combineFeatures } from "./utils";
 import axios from "axios";
 import { connecter } from "@store/customerFeatures";
 
+// hardcoded for demo
 function getPackageFeatures() {
   return {
     "0": [],

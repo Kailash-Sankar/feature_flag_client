@@ -1,25 +1,8 @@
 import React, { useEffect } from "react";
 import CPSelector from "@components/CPSelector";
 import FeatureForm from "@components/FeatureForm";
-import { notification, Radio } from "antd";
-import { serverUrl } from "./utils";
-import axios from "axios";
+import { Radio } from "antd";
 import { connecter } from "@store/manageFeatures";
-
-const notify = (status, name, extra = "") => {
-  let msg = "Changes have been Saved!";
-  let desc = `Created feature flag ${name}`;
-
-  if (!status) {
-    msg = `Encountered ${name}`;
-    desc = `Server: ${extra}`;
-  }
-
-  notification.open({
-    message: msg,
-    description: desc
-  });
-};
 
 function ManageFeatures({ 
   products, 
@@ -28,13 +11,13 @@ function ManageFeatures({
   feature, setFeature,
   features, setFeatures,
   mode, setMode,
-  reset, setRest
+  reset,
+  save,
 }) {
 
+  // dev in progress
   useEffect(() => {
     async function fetchData() {
-      // const res = await axios.get(`${serverUrl}/meta/features/${product}`);
-      //const data = res.data.data;
       setFeatures([]);
     }
     if (product) {
@@ -55,21 +38,8 @@ function ManageFeatures({
   }
 
   function handleSubmit(formData) {
-    async function saveData() {
-      try {
-        const res = await axios.post(`${serverUrl}/ff`, formData);
-        if (res.data.status === 1) {
-          notify(true, formData.name);
-          setRest(reset + 1);
-        } else {
-          notify(false, res.data.message, res.data.data[0].msg);
-        }
-      } catch (err) {
-        notify(false, "backend validation error", "Try posting data again");
-      }
-    }
     if (formData) {
-      saveData();
+      save(formData);
     }
   }
 

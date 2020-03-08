@@ -7,19 +7,21 @@ const scope = 'AUDIT';
 const initialState = {
     customer: 'all',
     product: 'all',
-    feature: 'all',
+    feature: undefined,
     features: [],
     productList: { all: { name: "All", id: "all" } },
     result: [],
 };
 
-const types = applyScope(scope, [
+export const types = applyScope(scope, [
     'SET_CUSTOMER',
     'SET_PRODUCT',
     'SET_FEATURE',
     'SET_FEATURES',
     'SET_PRODUCT_LIST',
     'SET_RESULT',
+    'SEARCH',
+    'FETCH_FEATURES',
 ]);
 
 const auditReducer = (state=initialState, action) => {
@@ -78,7 +80,15 @@ const mapDispatchToProps = (dispatch) => ({
     setResult: (result) => dispatch({
         type: types.SET_RESULT,
         result,
-    }),  
+    }),
+    search: (params) => dispatch({
+        type: types.SEARCH,
+        params,
+    }),
+    fetchFeatures: (product) => dispatch({
+        type: types.FETCH_FEATURES,
+        product
+    }),    
 });
 
 // state from root state

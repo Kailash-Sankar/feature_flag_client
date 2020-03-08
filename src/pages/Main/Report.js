@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import CPSelector from "@components/CPSelector";
 import SearchResults from "@components/SearchResults";
 import { Button, Empty } from "antd";
-import { serverUrl } from "./utils";
-import axios from "axios";
 import { connecter } from "@store/report";
 
 function Report({ 
@@ -11,50 +9,33 @@ function Report({
   products, 
   customer, setCustomer,
   product, setProduct,
-  features, setFeatures,
+  features,
   productList, setProductList,
   feature, setFeature,
-  result, setResult,
-
+  result, 
+  search,
+  fetchFeatures,
 }) {
 
   // add option to select all
   customers["all"] = { name: "All", id: "all" };
   products["all"] = { name: "All", id: "all" };
 
+  // search 
   useEffect(() => {
-    async function fetchData() {
-      const params = {
-        customer: customer || "all",
-        product: product || "all",
-        feature: feature || "all"
-      };
-      // customer  + product
-      const res = await axios.post(`${serverUrl}/search/`, params);
-      setResult(res.data.data || []);
-    }
     if (customer || product || feature) {
-      fetchData();
+      search({customer, product, feature});
     }
   }, [customer, product, feature]);
 
+  // get features list
   useEffect(() => {
-    async function fetchData() {
-      const res = await axios.get(`${serverUrl}/meta/features/${product}`);
-      const data = res.data.data;
-      // for all scenario
-      data.push({ name: "All", id: "all" });
-      if (data && data.length) {
-        setFeatures(data);
-      }
-    }
     if (product) {
-      fetchData();
+      fetchFeatures(product);
     }
   }, [product]);
 
   function onCustomerChange(value) {
-
     setCustomer(value);
     setProduct("all");
 

@@ -25,59 +25,60 @@ const tailFormItemLayout = {
   }
 };
 
-const FeatureForm = Form.create({ name: "feature_form" })(BaseFeatureForm);
-
 function BaseFeatureForm({
   // feature,
   products,
   packages,
   onSubmit,
-  form,
   reset
 }) {
-  const { getFieldDecorator, resetFields } = form;
+  const [form] = Form.useForm();
+  const { resetFields } = form;
 
   useEffect(() => {
     resetFields();
   }, [reset]);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    form.validateFields((err, values) => {
-      if (!err) {
-        onSubmit(values);
-      }
-    });
+  // called if validation passes
+  function handleSubmit(values) {
+    onSubmit(values);
   }
 
   return (
     <div>
-      <Form {...formItemLayout} onSubmit={handleSubmit} hideRequiredMark={true}>
-        <Form.Item label="ID">
-          {getFieldDecorator("id", {
-            rules: [{ required: true, message: "A unique id is required" }],
-            //initialValue: featureObj.id,
-          })(<Input placeholder="Enter unique feature flag id" />)}
+      <Form form={form} {...formItemLayout} onFinish={handleSubmit} hideRequiredMark={true}>
+        <Form.Item 
+          label="ID" 
+          name="id" 
+          rules={[{ required: true, message: "A unique id is required" }]}
+        >
+          <Input placeholder="Enter unique feature flag id" />
         </Form.Item>
-        <Form.Item label="Name">
-          {getFieldDecorator("name", {
-            rules: [{ required: true, message: "Name is required" }]
-          })(<Input placeholder="Enter a name for the flag" />)}
+
+        <Form.Item 
+          label="Name"
+          name="name"
+          rules={[{ required: true, message: "Name is required" }]}
+        >
+          <Input placeholder="Enter a name for the flag" />
         </Form.Item>
-        <Form.Item label="Description" required>
-          {getFieldDecorator("description", {
-            rules: [{ required: true, message: "Description is required" }]
-          })(
+
+        <Form.Item 
+          label="Description" 
+          name="description"
+          rules={[{ required: true, message: "Description is required" }]}
+        >
             <Input
               type="textarea"
               placeholder="Enter a description for the flag"
             />
-          )}
         </Form.Item>
-        <Form.Item label="Product" required>
-          {getFieldDecorator("product", {
-            rules: [{ required: true, message: "Product is required" }]
-          })(
+
+        <Form.Item 
+          label="Product" 
+          name="product"
+          rules={[{ required: true, message: "Product is required" }]}
+        >
             <Radio.Group>
               {Object.keys(products).map(p => (
                 <Radio key={p} value={p}>
@@ -85,12 +86,13 @@ function BaseFeatureForm({
                 </Radio>
               ))}
             </Radio.Group>
-          )}
         </Form.Item>
-        <Form.Item label="Package" required>
-          {getFieldDecorator("package", {
-            rules: [{ required: true, message: "package is required" }]
-          })(
+
+        <Form.Item 
+          label="Package"
+          name="package"
+          rules={[{ required: true, message: "package is required" }]}
+        >
             <Radio.Group>
               {Object.keys(packages).map(p => (
                 <Radio key={p} value={p}>
@@ -98,16 +100,17 @@ function BaseFeatureForm({
                 </Radio>
               ))}
             </Radio.Group>
-          )}
         </Form.Item>
+
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit">
             Submit
           </Button>
         </Form.Item>
+      
       </Form>
     </div>
   );
 }
 
-export default FeatureForm;
+export default BaseFeatureForm;

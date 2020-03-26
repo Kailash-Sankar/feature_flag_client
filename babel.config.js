@@ -1,9 +1,10 @@
 module.exports = {
   presets: [
    ["@babel/preset-env",{
-    "targets": {
-      "browsers": [ "last 2 Chrome versions, last 2 Firefox versions" ]
-    },
+    "targets": "> 0.25%, not dead",
+    useBuiltIns: 'usage',
+    // debug: true,
+    corejs: 3,
    }],
     "@babel/preset-react",
     "@babel/preset-typescript",
@@ -25,6 +26,7 @@ module.exports = {
   ignore: ["node_modules/**"],
   env: {
     test: {
+      
       plugins: [
         [
           "import",

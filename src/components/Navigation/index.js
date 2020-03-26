@@ -1,10 +1,20 @@
 import React from "react";
 import { Spacer } from "@components/Utils";
-import { Menu, Icon, Layout } from "antd";
+import { Menu, Layout } from "antd";
 import { Link, useLocation } from "react-router-dom";
 
 import * as styles from "./index.module.less";
 import logo from "@images/logo.png";
+
+import { 
+  FlagOutlined, 
+  DeploymentUnitOutlined, 
+  ContainerOutlined,
+  AuditOutlined,
+  FileSearchOutlined,
+  UserOutlined,
+  LogoutOutlined,
+} from '@ant-design/icons';
 
 const { Header, Sider } = Layout;
 
@@ -12,9 +22,9 @@ export const TopBar = () => {
   return (
     <Header style={{ background: "#fff", padding: 0 }}>
       <div className={styles.userWrap}>
-        <Icon type="user" />
+        <UserOutlined />
         <Spacer width={20} />
-        <Icon type="logout" />
+        <LogoutOutlined />
       </div>
     </Header>
   );
@@ -28,31 +38,31 @@ export function RenderMenu() {
     <Menu theme="dark" mode="inline" defaultSelectedKeys={[selected]}>
       <Menu.Item key="/mf">
         <Link to="/mf">
-          <Icon type="flag" />
+          <FlagOutlined />
           <span className="nav-text">Manage Features</span>
         </Link>
       </Menu.Item>
       <Menu.Item key="/cf">
         <Link to="/cf">
-          <Icon type="deployment-unit" />
+          <DeploymentUnitOutlined />
           <span className="nav-text">Customer Features</span>
         </Link>
       </Menu.Item>
       <Menu.Item key="/pkg">
         <Link to="/pkg">
-          <Icon type="container" />
+          <ContainerOutlined />
           <span className="nav-text">Manage Packages</span>
         </Link>
       </Menu.Item>
       <Menu.Item key="/audit">
         <Link to="/audit">
-          <Icon type="audit" />
+          <AuditOutlined />
           <span className="nav-text">Audit</span>
         </Link>
       </Menu.Item>
       <Menu.Item key="/report">
         <Link to="/report">
-          <Icon type="file-search" />
+          <FileSearchOutlined />
           <span className="nav-text">Reports</span>
         </Link>
       </Menu.Item>

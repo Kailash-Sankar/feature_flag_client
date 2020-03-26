@@ -64,9 +64,10 @@ module.exports = {
   // maxWorkers: "50%",
 
   // An array of directory names to be searched recursively up from the requiring module's location
-  // moduleDirectories: [
-  //   "node_modules"
-  // ],
+  moduleDirectories: [
+     "node_modules",
+     '<rootDir>/src',
+  ],
 
   // An array of file extensions your modules use
   moduleFileExtensions: ["js", "json", "jsx", "ts", "tsx"],
@@ -77,7 +78,9 @@ module.exports = {
       "<rootDir>/src/__mocks__/fileMock.js",
     "\\.(css|less)$": "<rootDir>/src/__mocks__/styleMock.js",
     "^@components(.*)$": "<rootDir>/src/components$1",
-    "^@utils(.*)$": "<rootDir>/src/utils$1"
+    "^@utils(.*)$": "<rootDir>/src/utils$1",
+    "^@images(.*)$": "<rootDir>/src/images$1",
+    "^@store(.*)$": "<rootDir>/src/store$1",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -146,7 +149,7 @@ module.exports = {
   ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
-  testPathIgnorePatterns: ["/node_modules/"]
+  testPathIgnorePatterns: ["/node_modules/"],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
   // testRegex: [],
@@ -164,14 +167,14 @@ module.exports = {
   // timers: "real",
 
   // A map from regular expressions to paths to transformers
-  // transform: {
-  //  "^.+\\.tsx?$": "ts-jest"
-  // },
+  transform: {
+    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "/node_modules/"
-  // ],
+  transformIgnorePatterns: [
+     "/node_modules/"
+  ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,

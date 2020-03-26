@@ -34,3 +34,21 @@
   max-height: 100%;
   margin: 8px;
 }
+
+.logo {
+    color: #2695f5;
+    font-size: 18px;
+    text-align: center;
+    .logo-text {
+      opacity: 1;
+      transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+}
+
+.ant-layout-sider-collapsed {
+  .logo-text {
+    opacity: 0;
+    display: inline-block;
+    max-width: 0;
+  }
+}

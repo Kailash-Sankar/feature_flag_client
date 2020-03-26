@@ -4,7 +4,7 @@ import { Menu, Layout } from "antd";
 import { Link, useLocation } from "react-router-dom";
 
 import * as styles from "./index.module.less";
-import logo from "@images/logo.png";
+//import logo from "@images/logo.png";
 
 import { 
   FlagOutlined, 
@@ -14,6 +14,7 @@ import {
   FileSearchOutlined,
   UserOutlined,
   LogoutOutlined,
+  ControlOutlined,
 } from '@ant-design/icons';
 
 const { Header, Sider } = Layout;
@@ -38,13 +39,13 @@ export function RenderMenu() {
     <Menu theme="dark" mode="inline" defaultSelectedKeys={[selected]}>
       <Menu.Item key="/mf">
         <Link to="/mf">
-          <FlagOutlined />
+          <DeploymentUnitOutlined />
           <span className="nav-text">Manage Features</span>
         </Link>
       </Menu.Item>
       <Menu.Item key="/cf">
         <Link to="/cf">
-          <DeploymentUnitOutlined />
+          <ControlOutlined />
           <span className="nav-text">Customer Features</span>
         </Link>
       </Menu.Item>
@@ -90,7 +91,11 @@ export function SideBar() {
       onCollapse={onCollapse}
     >
       <div className="logo" style={{ height: 64 }}>
-        <img className="logo-img" src={logo} alt="LOGO" />
+        <FlagOutlined /> 
+        <span className="logo-text"> Feature Flags </span>
+        {/*
+          <img className="logo-img" src={logo} alt="LOGO" />
+        */}
       </div>
       <RenderMenu />
     </Sider>

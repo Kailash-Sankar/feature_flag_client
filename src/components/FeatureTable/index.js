@@ -31,11 +31,10 @@ function FeatureBar({ feature, pos, onUpdate, readOnly }) {
   function onChange(e) {
     const fid = e.target["data-id"];
     const value = e.target.value;
-    console.log("feature id", fid);
     onUpdate(fid, pos, value);
   }
 
-  const handleClick = event => event.stopPropagation();
+  const handleClick = (event) => event.stopPropagation();
 
   return (
     <div onClick={handleClick}>

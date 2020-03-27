@@ -34,6 +34,7 @@ module.exports = {
       "@utils": path.resolve(__dirname, "./src/utils/"),
       "@images": path.resolve(__dirname, "./src/images/"),
       "@store": path.resolve(__dirname, "./src/store/"),
+      "@api": path.resolve(__dirname, "./src/api/")
     }
   },
   module: {

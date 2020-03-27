@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import SelectorPanel from "@components/SelectorPanel";
 import FeatureTable from "@components/FeatureTable";
 import { Button, Spin, notification, Empty } from "antd";
@@ -7,21 +7,7 @@ import { Spacer } from "@components/Utils";
 import { serverUrl, combineFeatures } from "./utils";
 import axios from "axios";
 import { connecter } from "@store/customerFeatures";
-
-// hardcoded for demo
-function getPackageFeatures() {
-  return {
-    "0": [],
-    "1": {
-      ad_slates: {
-        id: "ad_slates",
-        status: 2
-      }
-    },
-    "2": [],
-    "3": []
-  };
-}
+import Api from "@api";
 
 const notify = (customerName, product) => {
   notification.open({
@@ -33,7 +19,6 @@ const notify = (customerName, product) => {
 function CustomerFeatures({
   customers,
   products,
-  packages,
   customer,
   setCustomer,
   product,
@@ -45,10 +30,13 @@ function CustomerFeatures({
   reset,
   setReset,
   saving,
-  setSaving
+  setSaving,
+  pack,
+  setPack,
+  packages,
+  setPackages
 }) {
-  const [pack, setPack] = useState(undefined);
-
+  console.log("cf", arguments[0]);
   useEffect(() => {
     async function fetchData() {
       const resCF = await axios.get(
@@ -94,12 +82,14 @@ function CustomerFeatures({
   }
 
   function onProductChange(value) {
+    const packages = Api.getPackages(); // mocked
     setProduct(value);
+    setPackages(packages);
   }
 
   function onPackageChange(value) {
     setPack(value);
-    const packageFeatures = getPackageFeatures();
+    const packageFeatures = Api.getPackageFeatures(); // mocked
     applyPackage(packageFeatures[value]);
   }
 

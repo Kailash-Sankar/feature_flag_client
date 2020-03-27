@@ -64,10 +64,7 @@ module.exports = {
   // maxWorkers: "50%",
 
   // An array of directory names to be searched recursively up from the requiring module's location
-  moduleDirectories: [
-     "node_modules",
-     '<rootDir>/src',
-  ],
+  moduleDirectories: ["node_modules", "<rootDir>/src"],
 
   // An array of file extensions your modules use
   moduleFileExtensions: ["js", "json", "jsx", "ts", "tsx"],
@@ -81,6 +78,7 @@ module.exports = {
     "^@utils(.*)$": "<rootDir>/src/utils$1",
     "^@images(.*)$": "<rootDir>/src/images$1",
     "^@store(.*)$": "<rootDir>/src/store$1",
+    "^@api(.*)$": "<rootDir>/src/api$1"
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -168,13 +166,11 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
+    "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  transformIgnorePatterns: [
-     "/node_modules/"
-  ],
+  transformIgnorePatterns: ["/node_modules/"]
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,

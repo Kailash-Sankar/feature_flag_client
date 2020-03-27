@@ -1,20 +1,23 @@
 import React, { useEffect } from "react";
-import CPSelector from "@components/CPSelector";
+import SelectorPanel from "@components/SelectorPanel";
 import FeatureForm from "@components/FeatureForm";
 import { Radio } from "antd";
 import { connecter } from "@store/manageFeatures";
 
-function ManageFeatures({ 
-  products, 
+function ManageFeatures({
+  products,
   packages,
-  product, setProduct,
-  feature, setFeature,
-  features, setFeatures,
-  mode, setMode,
+  product,
+  setProduct,
+  feature,
+  setFeature,
+  features,
+  setFeatures,
+  mode,
+  setMode,
   reset,
-  save,
+  save
 }) {
-
   // dev in progress
   useEffect(() => {
     async function fetchData() {
@@ -59,7 +62,7 @@ function ManageFeatures({
         {mode ? (
           ""
         ) : (
-          <CPSelector customers={{}} products={products} {...cfProps} />
+          <SelectorPanel customers={{}} products={products} {...cfProps} />
         )}
       </div>
 

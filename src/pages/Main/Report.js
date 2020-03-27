@@ -1,30 +1,33 @@
 import React, { useEffect } from "react";
-import CPSelector from "@components/CPSelector";
+import SelectorPanel from "@components/SelectorPanel";
 import SearchResults from "@components/SearchResults";
 import { Button, Empty } from "antd";
 import { connecter } from "@store/report";
 
-function Report({ 
-  customers, 
-  products, 
-  customer, setCustomer,
-  product, setProduct,
+function Report({
+  customers,
+  products,
+  customer,
+  setCustomer,
+  product,
+  setProduct,
   features,
-  productList, setProductList,
-  feature, setFeature,
-  result, 
+  productList,
+  setProductList,
+  feature,
+  setFeature,
+  result,
   search,
-  fetchFeatures,
+  fetchFeatures
 }) {
-
   // add option to select all
   customers["all"] = { name: "All", id: "all" };
   products["all"] = { name: "All", id: "all" };
 
-  // search 
+  // search
   useEffect(() => {
     if (customer || product || feature) {
-      search({customer, product, feature});
+      search({ customer, product, feature });
     }
   }, [customer, product, feature]);
 
@@ -42,7 +45,7 @@ function Report({
     // skip for all mode
     if (value !== "all") {
       const temp = { all: { name: "All", id: "all" } };
-      customers[value].products.forEach(p => {
+      customers[value].products.forEach((p) => {
         temp[p] = products[p];
       });
       setProductList(temp);
@@ -77,7 +80,11 @@ function Report({
     <div style={{ textAlign: "left" }}>
       <h2>Feature Flag Usage Reports</h2>
       <div>
-        <CPSelector customers={customers} products={productList} {...cfProps} />
+        <SelectorPanel
+          customers={customers}
+          products={productList}
+          {...cfProps}
+        />
       </div>
       {result && result.length > 0 ? (
         <div style={{ margin: 30 }}>

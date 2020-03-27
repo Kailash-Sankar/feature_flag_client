@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CPSelector from "@components/CPSelector";
+import SelectorPanel from "@components/SelectorPanel";
 import FeatureTable from "@components/FeatureTable";
 import { Button, Spin, notification, Empty } from "antd";
 import { Spacer } from "@components/Utils";
@@ -30,16 +30,23 @@ const notify = (customerName, product) => {
   });
 };
 
-function CustomerFeatures({ 
-  customers, products, packages,
-  customer, setCustomer,
-  product, setProduct,
-  features, setFeatures,
-  productList, setProductList,
-  reset, setReset,
-  saving, setSaving,
+function CustomerFeatures({
+  customers,
+  products,
+  packages,
+  customer,
+  setCustomer,
+  product,
+  setProduct,
+  features,
+  setFeatures,
+  productList,
+  setProductList,
+  reset,
+  setReset,
+  saving,
+  setSaving
 }) {
-
   const [pack, setPack] = useState(undefined);
 
   useEffect(() => {
@@ -66,7 +73,7 @@ function CustomerFeatures({
     if (value !== "all") {
       setProduct(undefined);
       const temp = {};
-      customers[value].products.forEach(p => {
+      customers[value].products.forEach((p) => {
         temp[p] = products[p];
       });
       setProductList(temp);
@@ -75,7 +82,7 @@ function CustomerFeatures({
 
   function applyPackage(packageFeatures) {
     const newFeatures = [];
-    features.forEach(f => {
+    features.forEach((f) => {
       const ff = packageFeatures[f.id];
       if (ff) {
         newFeatures.push({ ...f, status: ff.status });
@@ -103,7 +110,7 @@ function CustomerFeatures({
         features: features
       })
       .then(function(response) {
-        console.log('response', response);
+        console.log("response", response);
         setSaving(false);
         notify(customers[customer].name, products[product].name);
       })
@@ -142,7 +149,11 @@ function CustomerFeatures({
     <div style={{ textAlign: "left" }}>
       <h2>Customer Feature Mapping</h2>
       <div>
-        <CPSelector customers={customers} products={productList} {...cfProps} />
+        <SelectorPanel
+          customers={customers}
+          products={productList}
+          {...cfProps}
+        />
       </div>
       {features.length > 0 ? (
         <div style={{ margin: 30 }}>

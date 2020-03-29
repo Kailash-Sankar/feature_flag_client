@@ -11,7 +11,7 @@ const statusMap = {
   "2": "All"
 };
 
-function StatusSelector({ fid, value, onChange }) {
+export function StatusSelector({ fid, value, onChange }) {
   return (
     <Radio.Group onChange={onChange} value={value}>
       <Radio value={0} data-id={fid}>
@@ -27,7 +27,7 @@ function StatusSelector({ fid, value, onChange }) {
   );
 }
 
-function FeatureBar({ feature, pos, onUpdate, readOnly }) {
+export function FeatureBar({ feature, pos, onUpdate, readOnly }) {
   function onChange(e) {
     const fid = e.target["data-id"];
     const value = e.target.value;
@@ -76,7 +76,7 @@ function FeatureTable({ features, updateFeatures, readOnly = false }) {
   );
 }
 
-function RenderHeader({ data }) {
+export function RenderHeader({ data }) {
   return (
     <div style={{ display: "inline-block" }}>
       <div>{data.name}</div>

@@ -5,7 +5,7 @@ const { Option } = Select;
 export function PackageSelect({ pack, packages, onPackageChange }) {
   return (
     <Select
-      defaultValue={""}
+      //defaultValue={""}
       style={{ width: 200 }}
       value={pack}
       onChange={onPackageChange}
@@ -54,7 +54,7 @@ export function CustomerSelect({ customer, customers, onCustomerChange }) {
   return (
     <Select
       //showSearch
-      defaultValue={""}
+      //defaultValue={""}
       style={{ width: 200 }}
       value={customer}
       onChange={onCustomerChange}

@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Feature Table feature bar editable 1`] = `
+<div
+  onClick={[Function]}
+>
+  <StatusSelector
+    fid="ff_one"
+    onChange={[Function]}
+    value={2}
+  />
+</div>
+`;
+
+exports[`Feature Table feature bar readonly 1`] = `
+<div
+  onClick={[Function]}
+>
+  <span>
+    All
+  </span>
+</div>
+`;
+
+exports[`Feature Table render header 1`] = `
+<div
+  style={
+    Object {
+      "display": "inline-block",
+    }
+  }
+>
+  <div>
+    Feature One
+  </div>
+  <div>
+    Enable feature to do something
+  </div>
+</div>
+`;
+
+exports[`Feature Table status selector 1`] = `
+<RadioGroup
+  buttonStyle="outline"
+  onChange={[Function]}
+  value={0}
+>
+  <Radio
+    data-id="ff_one"
+    type="radio"
+    value={0}
+  >
+    Disabled
+  </Radio>
+  <Radio
+    data-id="ff_one"
+    type="radio"
+    value={1}
+  >
+    Internal
+  </Radio>
+  <Radio
+    data-id="ff_one"
+    type="radio"
+    value={2}
+  >
+    All
+  </Radio>
+</RadioGroup>
+`;
+
+exports[`Feature Table table 1`] = `
+<Collapse
+  bordered={false}
+  defaultActiveKey={Array []}
+  expandIconPosition="left"
+>
+  <CollapsePanel
+    extra={
+      <FeatureBar
+        feature={
+          Object {
+            "attributes": Array [],
+            "description": "Enable feature to do something",
+            "id": "ff_one",
+            "name": "Feature One",
+            "product": "ax",
+            "status": 2,
+          }
+        }
+        onUpdate={[Function]}
+        pos={0}
+        readOnly={false}
+      />
+    }
+    header={
+      <RenderHeader
+        data={
+          Object {
+            "attributes": Array [],
+            "description": "Enable feature to do something",
+            "id": "ff_one",
+            "name": "Feature One",
+            "product": "ax",
+            "status": 2,
+          }
+        }
+      />
+    }
+    key="ff_one"
+  >
+    <p
+      style={
+        Object {
+          "paddingLeft": 24,
+        }
+      }
+    >
+      Feature realted attributes
+    </p>
+  </CollapsePanel>
+  <CollapsePanel
+    extra={
+      <FeatureBar
+        feature={
+          Object {
+            "attributes": Array [],
+            "description": "Enable feature to do something",
+            "id": "ff_two",
+            "name": "Feature Two",
+            "product": "ax",
+            "status": 1,
+          }
+        }
+        onUpdate={[Function]}
+        pos={1}
+        readOnly={false}
+      />
+    }
+    header={
+      <RenderHeader
+        data={
+          Object {
+            "attributes": Array [],
+            "description": "Enable feature to do something",
+            "id": "ff_two",
+            "name": "Feature Two",
+            "product": "ax",
+            "status": 1,
+          }
+        }
+      />
+    }
+    key="ff_two"
+  >
+    <p
+      style={
+        Object {
+          "paddingLeft": 24,
+        }
+      }
+    >
+      Feature realted attributes
+    </p>
+  </CollapsePanel>
+  <CollapsePanel
+    extra={
+      <FeatureBar
+        feature={
+          Object {
+            "attributes": Array [],
+            "description": "Enable feature to do something",
+            "id": "ff_three",
+            "name": "Feature Three",
+            "product": "cx",
+            "status": 0,
+          }
+        }
+        onUpdate={[Function]}
+        pos={2}
+        readOnly={false}
+      />
+    }
+    header={
+      <RenderHeader
+        data={
+          Object {
+            "attributes": Array [],
+            "description": "Enable feature to do something",
+            "id": "ff_three",
+            "name": "Feature Three",
+            "product": "cx",
+            "status": 0,
+          }
+        }
+      />
+    }
+    key="ff_three"
+  >
+    <p
+      style={
+        Object {
+          "paddingLeft": 24,
+        }
+      }
+    >
+      Feature realted attributes
+    </p>
+  </CollapsePanel>
+</Collapse>
+`;

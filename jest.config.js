@@ -78,7 +78,8 @@ module.exports = {
     "^@utils(.*)$": "<rootDir>/src/utils$1",
     "^@images(.*)$": "<rootDir>/src/images$1",
     "^@store(.*)$": "<rootDir>/src/store$1",
-    "^@api(.*)$": "<rootDir>/src/api$1"
+    "^@api(.*)$": "<rootDir>/src/api$1",
+    "^@mock(.*)$": "<rootDir>/src/__mocks__$1"
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -129,7 +130,7 @@ module.exports = {
   // setupFilesAfterEnv: [],
 
   // A list of paths to snapshot serializer modules Jest should use for snapshot testing
-  // snapshotSerializers: [],
+  snapshotSerializers: ["enzyme-to-json/serializer"],
 
   // The test environment that will be used for testing
   testEnvironment: "jsdom",

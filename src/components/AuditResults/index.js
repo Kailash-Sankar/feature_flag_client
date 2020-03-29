@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Collapse } from "antd";
 const { Panel } = Collapse;
-import { formatDate, serverUrl } from "@components/Utils";
+import { formatDate } from "@components/Utils";
 import axios from "axios";
+import { serverUrl } from "@api";
 
 import ReactDiffViewer from "react-diff-viewer";
 

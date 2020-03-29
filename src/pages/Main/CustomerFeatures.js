@@ -36,7 +36,6 @@ function CustomerFeatures({
   packages,
   setPackages
 }) {
-  console.log("cf", arguments[0]);
   useEffect(() => {
     async function fetchData() {
       const resCF = await axios.get(

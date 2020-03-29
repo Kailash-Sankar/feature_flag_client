@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search Results 1`] = `
+<div>
+  <Collapse
+    bordered={false}
+    defaultActiveKey={Array []}
+    expandIconPosition="left"
+  >
+    <CollapsePanel
+      extra={
+        <span
+          style={
+            Object {
+              "color": "#757575",
+              "fontSize": 12,
+            }
+          }
+        >
+          Last Update:Invalid Date
+        </span>
+      }
+      header="Feature One"
+      key="ff_one"
+    >
+      <RenderList />
+    </CollapsePanel>
+    <CollapsePanel
+      extra={
+        <span
+          style={
+            Object {
+              "color": "#757575",
+              "fontSize": 12,
+            }
+          }
+        >
+          Last Update:Invalid Date
+        </span>
+      }
+      header="Feature Two"
+      key="ff_two"
+    >
+      <RenderList />
+    </CollapsePanel>
+    <CollapsePanel
+      extra={
+        <span
+          style={
+            Object {
+              "color": "#757575",
+              "fontSize": 12,
+            }
+          }
+        >
+          Last Update:Invalid Date
+        </span>
+      }
+      header="Feature Three"
+      key="ff_three"
+    >
+      <RenderList />
+    </CollapsePanel>
+  </Collapse>
+</div>
+`;

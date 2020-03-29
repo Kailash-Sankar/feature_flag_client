@@ -4,10 +4,10 @@ import FeatureTable from "@components/FeatureTable";
 import { Button, Spin, notification, Empty } from "antd";
 import { Spacer } from "@components/Utils";
 
-import { serverUrl, combineFeatures } from "./utils";
+import { combineFeatures } from "./utils";
 import axios from "axios";
 import { connecter } from "@store/customerFeatures";
-import Api from "@api";
+import Api, { serverUrl } from "@api";
 
 const notify = (customerName, product) => {
   notification.open({
@@ -50,6 +50,8 @@ function CustomerFeatures({
     }
     if (customer && product) {
       fetchData();
+    } else {
+      setFeatures([]);
     }
   }, [customer, product, reset]);
 

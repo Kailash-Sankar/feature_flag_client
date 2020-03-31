@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Collapse } from "antd";
 const { Panel } = Collapse;
-import { formatDate, serverUrl } from "@components/Utils";
+import { formatDate } from "@components/Utils";
 import axios from "axios";
+import { serverUrl } from "@api";
 
 import ReactDiffViewer from "react-diff-viewer";
 
 export function RenderDiff({ prev }) {
   const [current, setCurrent] = useState({});
 
+  // request fired once when panel is expanded
+  // fetches current customer features (all)
   React.useEffect(() => {
     async function fetchData() {
       const res = await axios.get(`${serverUrl}/customer/${prev.id}/all`);
@@ -35,7 +38,7 @@ export function RenderDiff({ prev }) {
   return <div> Loading Diff</div>;
 }
 
-const genExtra = date => (
+const genExtra = (date) => (
   <span style={{ fontSize: 12, color: "#757575" }}>
     {`Changed At:${formatDate(date)}`}
   </span>

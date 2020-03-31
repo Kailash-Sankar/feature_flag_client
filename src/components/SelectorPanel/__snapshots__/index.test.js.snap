@@ -1,0 +1,278 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Selector Panel customer select 1`] = `
+<Select
+  bordered={true}
+  choiceTransitionName="zoom"
+  onChange={[Function]}
+  placeholder="Select a value"
+  style={
+    Object {
+      "width": 200,
+    }
+  }
+  transitionName="slide-up"
+  value="101"
+>
+  <Option
+    key="101"
+  >
+    Alpha
+  </Option>
+  <Option
+    key="102"
+  >
+    Beta
+  </Option>
+  <Option
+    key="103"
+  >
+    Gamma
+  </Option>
+</Select>
+`;
+
+exports[`Selector Panel feature select 1`] = `
+<Select
+  bordered={true}
+  choiceTransitionName="zoom"
+  defaultValue=""
+  onChange={[Function]}
+  placeholder="Select a value"
+  style={
+    Object {
+      "width": 200,
+    }
+  }
+  transitionName="slide-up"
+  value="ff_one"
+>
+  <Option
+    key="ff_one"
+  >
+    Feature One
+  </Option>
+  <Option
+    key="ff_two"
+  >
+    Feature Two
+  </Option>
+  <Option
+    key="ff_three"
+  >
+    Feature Three
+  </Option>
+</Select>
+`;
+
+exports[`Selector Panel package select 1`] = `
+<Select
+  bordered={true}
+  choiceTransitionName="zoom"
+  onChange={[Function]}
+  placeholder="Select a value"
+  style={
+    Object {
+      "width": 200,
+    }
+  }
+  transitionName="slide-up"
+  value="0"
+>
+  <Option
+    key="0"
+  >
+    Custom
+  </Option>
+  <Option
+    key="1"
+  >
+    Silver
+  </Option>
+  <Option
+    key="2"
+  >
+    Gold
+  </Option>
+  <Option
+    key="3"
+  >
+    Diamond
+  </Option>
+</Select>
+`;
+
+exports[`Selector Panel product select 1`] = `
+<Select
+  bordered={true}
+  choiceTransitionName="zoom"
+  onChange={[Function]}
+  placeholder="Select a value"
+  style={
+    Object {
+      "width": 200,
+    }
+  }
+  transitionName="slide-up"
+  value="ax"
+>
+  <Option
+    key="ax"
+  >
+    Ad Insights
+  </Option>
+  <Option
+    key="bx"
+  >
+    Experience Insights
+  </Option>
+  <Option
+    key="cx"
+  >
+    Content Insights
+  </Option>
+  <Option
+    key="dx"
+  >
+    Social Insights
+  </Option>
+</Select>
+`;
+
+exports[`Selector Panel select wrapper 1`] = `
+<div>
+  <div>
+    <span>
+      Customer
+    </span>
+    <CustomerSelect
+      customer="101"
+      customers={
+        Object {
+          "101": Object {
+            "id": 101,
+            "name": "Alpha",
+            "products": Array [
+              "ax",
+              "cx",
+            ],
+          },
+          "102": Object {
+            "id": 102,
+            "name": "Beta",
+            "products": Array [
+              "cx",
+            ],
+          },
+          "103": Object {
+            "id": 103,
+            "name": "Gamma",
+            "products": Array [
+              "ax",
+            ],
+          },
+        }
+      }
+      onCustomerChange={[Function]}
+    />
+  </div>
+  <Spacer />
+  <div>
+    <span>
+      Product
+    </span>
+    <ProductSelect
+      onProductChange={[Function]}
+      product="ax"
+      products={
+        Object {
+          "ax": Object {
+            "id": "ax",
+            "name": "Ad Insights",
+          },
+          "bx": Object {
+            "id": "bx",
+            "name": "Experience Insights",
+          },
+          "cx": Object {
+            "id": "cx",
+            "name": "Content Insights",
+          },
+          "dx": Object {
+            "id": "dx",
+            "name": "Social Insights",
+          },
+        }
+      }
+    />
+  </div>
+  <Spacer />
+  <div>
+    <span>
+      Feature
+    </span>
+    <FeatureSelect
+      feature="ff_one"
+      features={
+        Array [
+          Object {
+            "attributes": Array [],
+            "description": "Enable feature to do something",
+            "id": "ff_one",
+            "name": "Feature One",
+            "product": "ax",
+            "status": 2,
+          },
+          Object {
+            "attributes": Array [],
+            "description": "Enable feature to do something",
+            "id": "ff_two",
+            "name": "Feature Two",
+            "product": "ax",
+            "status": 1,
+          },
+          Object {
+            "attributes": Array [],
+            "description": "Enable feature to do something",
+            "id": "ff_three",
+            "name": "Feature Three",
+            "product": "cx",
+            "status": 0,
+          },
+        ]
+      }
+      onFeatureChange={[Function]}
+    />
+  </div>
+  <Spacer />
+  <div>
+    <span>
+      Package
+    </span>
+    <PackageSelect
+      onPackageChange={[Function]}
+      pack="0"
+      packages={
+        Object {
+          "0": Object {
+            "id": 0,
+            "name": "Custom",
+          },
+          "1": Object {
+            "id": 1,
+            "name": "Silver",
+          },
+          "2": Object {
+            "id": 2,
+            "name": "Gold",
+          },
+          "3": Object {
+            "id": 3,
+            "name": "Diamond",
+          },
+        }
+      }
+    />
+  </div>
+</div>
+`;

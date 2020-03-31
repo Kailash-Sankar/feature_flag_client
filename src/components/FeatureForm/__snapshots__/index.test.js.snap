@@ -1,0 +1,216 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`feature form 1`] = `
+<div>
+  <ForwardRef(InternalForm)
+    form={
+      Object {
+        "__INTERNAL__": Object {},
+        "getFieldError": [Function],
+        "getFieldValue": [Function],
+        "getFieldsError": [Function],
+        "getFieldsValue": [Function],
+        "getInternalHooks": [Function],
+        "isFieldTouched": [Function],
+        "isFieldValidating": [Function],
+        "isFieldsTouched": [Function],
+        "isFieldsValidating": [Function],
+        "resetFields": [Function],
+        "scrollToField": [Function],
+        "setFields": [Function],
+        "setFieldsValue": [Function],
+        "submit": [Function],
+        "validateFields": [Function],
+      }
+    }
+    hideRequiredMark={true}
+    labelCol={
+      Object {
+        "sm": Object {
+          "span": 2,
+        },
+        "xs": Object {
+          "span": 2,
+        },
+      }
+    }
+    onFinish={[Function]}
+    wrapperCol={
+      Object {
+        "sm": Object {
+          "span": 16,
+        },
+        "xs": Object {
+          "span": 24,
+        },
+      }
+    }
+  >
+    <FormItem
+      label="ID"
+      name="id"
+      rules={
+        Array [
+          Object {
+            "message": "A unique id is required",
+            "required": true,
+          },
+        ]
+      }
+    >
+      <Input
+        placeholder="Enter unique feature flag id"
+        type="text"
+      />
+    </FormItem>
+    <FormItem
+      label="Name"
+      name="name"
+      rules={
+        Array [
+          Object {
+            "message": "Name is required",
+            "required": true,
+          },
+        ]
+      }
+    >
+      <Input
+        placeholder="Enter a name for the flag"
+        type="text"
+      />
+    </FormItem>
+    <FormItem
+      label="Description"
+      name="description"
+      rules={
+        Array [
+          Object {
+            "message": "Description is required",
+            "required": true,
+          },
+        ]
+      }
+    >
+      <Input
+        placeholder="Enter a description for the flag"
+        type="textarea"
+      />
+    </FormItem>
+    <FormItem
+      label="Product"
+      name="product"
+      rules={
+        Array [
+          Object {
+            "message": "Product is required",
+            "required": true,
+          },
+        ]
+      }
+    >
+      <RadioGroup
+        buttonStyle="outline"
+      >
+        <Radio
+          key="ax"
+          type="radio"
+          value="ax"
+        >
+          Ad Insights
+        </Radio>
+        <Radio
+          key="bx"
+          type="radio"
+          value="bx"
+        >
+          Experience Insights
+        </Radio>
+        <Radio
+          key="cx"
+          type="radio"
+          value="cx"
+        >
+          Content Insights
+        </Radio>
+        <Radio
+          key="dx"
+          type="radio"
+          value="dx"
+        >
+          Social Insights
+        </Radio>
+      </RadioGroup>
+    </FormItem>
+    <FormItem
+      label="Package"
+      name="package"
+      rules={
+        Array [
+          Object {
+            "message": "package is required",
+            "required": true,
+          },
+        ]
+      }
+    >
+      <RadioGroup
+        buttonStyle="outline"
+      >
+        <Radio
+          key="0"
+          type="radio"
+          value="0"
+        >
+          Custom
+        </Radio>
+        <Radio
+          key="1"
+          type="radio"
+          value="1"
+        >
+          Silver
+        </Radio>
+        <Radio
+          key="2"
+          type="radio"
+          value="2"
+        >
+          Gold
+        </Radio>
+        <Radio
+          key="3"
+          type="radio"
+          value="3"
+        >
+          Diamond
+        </Radio>
+      </RadioGroup>
+    </FormItem>
+    <FormItem
+      wrapperCol={
+        Object {
+          "sm": Object {
+            "offset": 2,
+            "span": 4,
+          },
+          "xs": Object {
+            "offset": 0,
+            "span": 2,
+          },
+        }
+      }
+    >
+      <Button
+        block={false}
+        ghost={false}
+        htmlType="submit"
+        loading={false}
+        type="primary"
+      >
+        Submit
+      </Button>
+    </FormItem>
+  </ForwardRef(InternalForm)>
+</div>
+`;

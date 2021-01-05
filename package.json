@@ -26,7 +26,7 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^4.0.4",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "core-js": "^3.6.4",
     "echarts": "^4.7.0",

@@ -32,7 +32,7 @@
     "echarts": "^4.7.0",
     "immutability-helper": "^3.0.1",
     "memoize-one": "^5.1.1",
-    "moment-timezone": "^0.5.28",
+    "moment-timezone": "^0.5.35",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-diff-viewer": "^3.0.2",
